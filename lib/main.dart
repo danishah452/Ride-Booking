@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:ride_booking/ui/DrawerScreens/MyBike/vehicle.dart';
 import 'package:ride_booking/ui/DrawerScreens/profile.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:ride_booking/ui/DrawerScreens/my_address.dart';
@@ -31,7 +32,7 @@ class _MyAppState extends State<MyApp> {
       builder: DevicePreview.appBuilder,
       debugShowCheckedModeBanner: false,
       theme: ThemeData(primaryColor: Colors.teal, accentColor: Colors.purple),
-      home: Maps(),
+      home: HomePage(),
     );
   }
 }

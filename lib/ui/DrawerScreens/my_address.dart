@@ -13,6 +13,7 @@ class Maps extends StatefulWidget {
 
 class _MapsState extends State<Maps> {
   final _formKey = GlobalKey<FormState>();
+  bool isButtonPressed = false;
 
   LocationData _currentPosition;
   String _address, _dateTime;
@@ -21,7 +22,7 @@ class _MapsState extends State<Maps> {
   Location location = Location();
 
   GoogleMapController _controller;
-  LatLng _initialcameraposition = LatLng(0.5937, 0.9629);
+  LatLng _initialcameraposition = LatLng(31.582045, 74.329376);
 
   @override
   void initState() {
@@ -46,9 +47,10 @@ class _MapsState extends State<Maps> {
       key: _formKey,
       child: Column(
         children: <Widget>[
-          new ListTile(
-            leading: const Icon(Icons.person),
-            title: new TextFormField(
+          Container(
+            margin: EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+            child: new TextFormField(
+              keyboardType: TextInputType.text,
               validator: (value) {
                 if (value.isEmpty) {
                   return "Please enter your address";
@@ -56,27 +58,32 @@ class _MapsState extends State<Maps> {
                 return null;
               },
               decoration: new InputDecoration(
-                hintText: "Complete Address",
+                border: new OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(35),
+                  borderSide: new BorderSide(color: Colors.orange),
+                ),
+                enabledBorder: const OutlineInputBorder(
+                    borderSide:
+                        const BorderSide(color: Colors.orange, width: 1.0),
+                    borderRadius: BorderRadius.all(Radius.circular(25))),
+                focusedBorder: const OutlineInputBorder(
+                    borderSide:
+                        const BorderSide(color: Colors.orange, width: 2.0),
+                    borderRadius: BorderRadius.all(Radius.circular(25))),
+                filled: true,
+                fillColor: Colors.grey.shade100,
+                labelText: 'Address',
+                prefixIcon:
+                    const Icon(Icons.home_sharp, size: 25, color: Colors.orange),
+                labelStyle: TextStyle(color: Colors.black45),
+                contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
               ),
             ),
           ),
-          new ListTile(
-            leading: const Icon(Icons.phone),
-            title: new TextFormField(
-              validator: (value) {
-                if (value.isEmpty) {
-                  return "Please enter a landmark";
-                }
-                return null;
-              },
-              decoration: new InputDecoration(
-                hintText: "Landmark",
-              ),
-            ),
-          ),
-          new ListTile(
-            leading: const Icon(Icons.email),
-            title: new TextFormField(
+          Container(
+            padding: EdgeInsets.symmetric(horizontal: 30),
+            child: new TextFormField(
+              keyboardType: TextInputType.text,
               validator: (value) {
                 if (value.isEmpty) {
                   return "Please enter your locality";
@@ -84,13 +91,32 @@ class _MapsState extends State<Maps> {
                 return null;
               },
               decoration: new InputDecoration(
-                hintText: "Locality",
+                border: new OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(35),
+                  borderSide: new BorderSide(color: Colors.orange),
+                ),
+                enabledBorder: const OutlineInputBorder(
+                    borderSide:
+                        const BorderSide(color: Colors.orange, width: 1.0),
+                    borderRadius: BorderRadius.all(Radius.circular(25))),
+                focusedBorder: const OutlineInputBorder(
+                    borderSide:
+                        const BorderSide(color: Colors.orange, width: 2.0),
+                    borderRadius: BorderRadius.all(Radius.circular(25))),
+                filled: true,
+                fillColor: Colors.grey.shade100,
+                labelText: 'Locality',
+                labelStyle: TextStyle(color: Colors.black45),
+                prefixIcon: const Icon(Icons.streetview_sharp,
+                    size: 25, color: Colors.orange),
+                contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
               ),
             ),
           ),
-          new ListTile(
-            leading: const Icon(Icons.email),
-            title: new TextFormField(
+          Container(
+            margin: EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+            child: new TextFormField(
+              keyboardType: TextInputType.text,
               validator: (value) {
                 if (value.isEmpty) {
                   return "Please enter your city";
@@ -98,20 +124,26 @@ class _MapsState extends State<Maps> {
                 return null;
               },
               decoration: new InputDecoration(
-                hintText: "City",
+                border: new OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(35),
+                  borderSide: new BorderSide(color: Colors.orange),
+                ),
+                enabledBorder: const OutlineInputBorder(
+                    borderSide:
+                        const BorderSide(color: Colors.orange, width: 1.0),
+                    borderRadius: BorderRadius.all(Radius.circular(25))),
+                focusedBorder: const OutlineInputBorder(
+                    borderSide:
+                        const BorderSide(color: Colors.orange, width: 2.0),
+                    borderRadius: BorderRadius.all(Radius.circular(25))),
+                filled: true,
+                fillColor: Colors.grey.shade100,
+                labelText: 'City',
+                prefixIcon: const Icon(Icons.location_city_sharp,
+                    size: 25, color: Colors.orange),
+                labelStyle: TextStyle(color: Colors.black45),
+                contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
               ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 16.0),
-            child: ElevatedButton(
-              onPressed: () {
-                if (_formKey.currentState.validate()) {
-                  Scaffold.of(context)
-                      .showSnackBar(SnackBar(content: Text('Processing Data')));
-                }
-              },
-              child: Text('Submit'),
             ),
           ),
         ],
@@ -119,12 +151,87 @@ class _MapsState extends State<Maps> {
     );
   }
 
-  // Widget _addressOptions(){
-  //   return
-  // }
+  Widget _processButton() {
+    return InkWell(
+      onTap: () {
+        if (_formKey.currentState.validate()) {
+          Scaffold.of(context)
+              .showSnackBar(SnackBar(content: Text('Processing Data')));
+        }
+      },
+      child: Container(
+        width: MediaQuery.of(context).size.width * 0.55,
+        padding: EdgeInsets.symmetric(vertical: 14),
+        // alignment: Alignment.center,
+        decoration: BoxDecoration(
+          border: Border.all(color: Colors.orange.shade700),
+          color: Colors.yellow.shade800,
+          borderRadius: BorderRadius.circular(35),
+        ),
+        child: Center(
+          child: Text(
+            'Save',
+            style: TextStyle(
+                color: Colors.white, fontSize: 19, fontWeight: FontWeight.w700),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _optionButton() {
+    return new ButtonBar(
+      mainAxisSize: MainAxisSize.min,
+      children: <Widget>[
+        new RaisedButton(
+          color: Colors.orange.shade400,
+          colorBrightness: Brightness.light,
+          splashColor: Colors.yellow,
+          child: new Text(
+            'Home',
+            style: TextStyle(color: Colors.white, fontSize: 17),
+          ),
+          shape: RoundedRectangleBorder(
+              side: BorderSide(color: Colors.orange.shade300),
+              borderRadius: BorderRadius.circular(15)),
+          onPressed: () {},
+          padding: EdgeInsets.symmetric(vertical: 23, horizontal: 20),
+        ),
+        new RaisedButton(
+          color: Colors.orange.shade400,
+          splashColor: Colors.yellow,
+          colorBrightness: Brightness.light,
+          child: new Text(
+            'Office',
+            style: TextStyle(color: Colors.white, fontSize: 17),
+          ),
+          shape: RoundedRectangleBorder(
+              side: BorderSide(color: Colors.orange.shade300),
+              borderRadius: BorderRadius.circular(15)),
+          onPressed: () {},
+          padding: EdgeInsets.symmetric(vertical: 23, horizontal: 20),
+        ),
+        new RaisedButton(
+          color: Colors.orange.shade400,
+          splashColor: Colors.yellow,
+          colorBrightness: Brightness.light,
+          child: new Text(
+            'Camp',
+            style: TextStyle(color: Colors.white, fontSize: 17),
+          ),
+          shape: RoundedRectangleBorder(
+              side: BorderSide(color: Colors.orange.shade300),
+              borderRadius: BorderRadius.circular(15)),
+          onPressed: () {},
+          padding: EdgeInsets.symmetric(vertical: 23, horizontal: 20),
+        ),
+      ],
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.black,
@@ -141,28 +248,38 @@ class _MapsState extends State<Maps> {
         actions: [],
       ),
       body: Container(
-        height: MediaQuery.of(context).size.height,
-        width: MediaQuery.of(context).size.width,
-        child: Container(
-          color: Colors.grey.withOpacity(.1),
-          child: Center(
-            child: Column(
-              children: [
-                Container(
-                  height: MediaQuery.of(context).size.height * 0.35,
-                  width: MediaQuery.of(context).size.width,
-                  child: GoogleMap(
-                    initialCameraPosition: CameraPosition(
-                        target: _initialcameraposition, zoom: 15),
-                    mapType: MapType.normal,
-                    onMapCreated: _onMapCreated,
-                    myLocationEnabled: true,
-                  ),
-                ),
-                _addressFields()
-              ],
+        height: size.height,
+        width: size.width,
+        child: Column(
+          children: [
+            Container(
+              height: size.height * 0.34,
+              width: size.width,
+              child: GoogleMap(
+                initialCameraPosition:
+                    CameraPosition(target: _initialcameraposition, zoom: 15),
+                mapType: MapType.normal,
+                onMapCreated: _onMapCreated,
+                myLocationEnabled: true,
+              ),
             ),
-          ),
+            Flexible(
+              flex: 1,
+              child: ListView(
+                children: [
+                  Column(
+                    children: <Widget>[
+                      _addressFields(),
+                      SizedBox(height: size.height * 0.01),
+                      _optionButton(),
+                      SizedBox(height: size.height * 0.02),
+                      _processButton()
+                    ],
+                  ),
+                ],
+              ),
+            )
+          ],
         ),
       ),
     );
@@ -198,22 +315,22 @@ class _MapsState extends State<Maps> {
         _initialcameraposition =
             LatLng(_currentPosition.latitude, _currentPosition.longitude);
 
-        DateTime now = DateTime.now();
-        _dateTime = DateFormat('EEE d MMM kk:mm:ss ').format(now);
-        _getAddress(_currentPosition.latitude, _currentPosition.longitude)
-            .then((value) {
-          setState(() {
-            _address = "${value.first.addressLine}";
-          });
-        });
+        // DateTime now = DateTime.now();
+        // _dateTime = DateFormat('EEE d MMM kk:mm:ss ').format(now);
+        // _getAddress(_currentPosition.latitude, _currentPosition.longitude)
+        //     .then((value) {
+        //   setState(() {
+        //     _address = "${value.first.addressLine}";
+        //   });
+        // });
       });
     });
   }
 
-  Future<List<Address>> _getAddress(double lat, double lang) async {
-    final coordinates = new Coordinates(lat, lang);
-    List<Address> add =
-    await Geocoder.local.findAddressesFromCoordinates(coordinates);
-    return add;
-  }
+// Future<List<Address>> _getAddress(double lat, double lang) async {
+//   final coordinates = new Coordinates(lat, lang);
+//   List<Address> add =
+//       await Geocoder.local.findAddressesFromCoordinates(coordinates);
+//   return add;
+// }
 }

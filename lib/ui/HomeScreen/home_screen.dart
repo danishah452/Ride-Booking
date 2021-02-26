@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:ride_booking/ui/DrawerScreens/MyBike/vehicle.dart';
 import 'package:ride_booking/ui/DrawerScreens/about_us.dart';
 import 'package:ride_booking/ui/DrawerScreens/profile.dart';
-import 'package:hexcolor/hexcolor.dart';
 import 'package:ride_booking/ui/DrawerScreens/my_address.dart';
-import 'package:ride_booking/ui/LoginScreen/login_screen.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:ride_booking/ui/DataScreens/AddScreen.dart';
-import 'package:ride_booking/ui/DataScreens/ProfileScreen.dart';
-import 'package:ride_booking/ui/DataScreens/FeedScreen.dart';
-import 'package:ride_booking/ui/DataScreens/NotificationScreen.dart';
-import 'package:ride_booking/ui/DataScreens/SearchScreen.dart';
+import 'package:ride_booking/ui/BottomNavigationScreens/AddScreen.dart';
+import 'package:ride_booking/ui/BottomNavigationScreens/ProfileScreen.dart';
+import 'package:ride_booking/ui/BottomNavigationScreens/FeedScreen.dart';
+import 'package:ride_booking/ui/BottomNavigationScreens/NotificationScreen.dart';
+import 'package:ride_booking/ui/BottomNavigationScreens/SearchScreen.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -19,7 +18,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  int pageIndex = 0;
+  int pageIndex = 2;
 
   //  Calling all pages
   final FeedScreen _feedScreen = FeedScreen();
@@ -98,8 +97,8 @@ class _HomePageState extends State<HomePage> {
           index: pageIndex,
           height: 50.0,
           items: <Widget>[
-            Icon(Icons.done_all_sharp, size: 30, color: Colors.white),
-            Icon(Icons.lightbulb_outline_sharp, size: 30, color: Colors.white),
+            Icon(Icons.home_sharp, size: 30, color: Colors.white),
+            Icon(Icons.location_on_sharp, size: 30, color: Colors.white),
             Icon(Icons.add, size: 30, color: Colors.white),
             Icon(Icons.favorite_border, size: 30, color: Colors.white),
             Icon(Icons.perm_identity, size: 30, color: Colors.white),
@@ -196,11 +195,11 @@ class _HomePageState extends State<HomePage> {
                             ),
                           ),
                           onTap: () {
-                            // Navigator.push(
-                            //   context,
-                            //   MaterialPageRoute(
-                            //       builder: (context) => EditSales()),
-                            // );
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => MyBike()),
+                            );
                           }),
                       InkWell(
                           highlightColor: Colors.blue.shade50,
@@ -331,8 +330,7 @@ class _HomePageState extends State<HomePage> {
                         onTap: () {
                           Navigator.push(
                             context,
-                            MaterialPageRoute(
-                                builder: (context) => AboutUs()),
+                            MaterialPageRoute(builder: (context) => AboutUs()),
                           );
                         },
                         highlightColor: Colors.blue.shade50,
