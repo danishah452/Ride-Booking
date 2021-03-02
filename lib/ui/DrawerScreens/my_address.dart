@@ -1,17 +1,18 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:location/location.dart';
 import 'package:geocoder/geocoder.dart';
 import 'package:intl/intl.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:ride_booking/ui/HomeScreen/home_screen.dart';
 
-class Maps extends StatefulWidget {
+class MyAddress extends StatefulWidget {
   @override
-  _MapsState createState() => _MapsState();
+  _MyAddressState createState() => _MyAddressState();
 }
 
-class _MapsState extends State<Maps> {
+class _MyAddressState extends State<MyAddress> {
   final _formKey = GlobalKey<FormState>();
   bool isButtonPressed = false;
 
@@ -233,20 +234,20 @@ class _MapsState extends State<Maps> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.black,
-        leading: GestureDetector(
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => HomePage()),
-              );
-            },
-            child: Icon(Icons.arrow_back_sharp, size: 25)),
-        title: Text('Back'),
-        automaticallyImplyLeading: false,
-        actions: [],
-      ),
+      // appBar: AppBar(
+      //   backgroundColor: Colors.black,
+      //   leading: GestureDetector(
+      //       onTap: () {
+      //         Navigator.push(
+      //           context,
+      //           MaterialPageRoute(builder: (context) => HomePage()),
+      //         );
+      //       },
+      //       child: Icon(Icons.arrow_back_sharp, size: 25)),
+      //   title: Text('Back'),
+      //   automaticallyImplyLeading: false,
+      //   actions: [],
+      // ),
       body: Container(
         height: size.height,
         width: size.width,

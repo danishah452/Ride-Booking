@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:intl/intl.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
@@ -12,6 +14,8 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+
+
   Widget _submitButton() {
     return InkWell(
       onTap: () {
@@ -57,15 +61,16 @@ class _LoginPageState extends State<LoginPage> {
         textFieldController: controller,
         formatInput: false,
         keyboardType:
-            TextInputType.numberWithOptions(signed: true, decimal: true),
+        TextInputType.numberWithOptions(signed: true, decimal: true),
         inputBorder:
-            OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
+        OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
         onSaved: (PhoneNumber number) {
           print('On Saved: $number');
         },
       ),
     );
   }
+
 
   Widget _loginHead() {
     return Container(
@@ -90,11 +95,13 @@ class _LoginPageState extends State<LoginPage> {
   Widget _googleButton() {
     return InkWell(
       onTap: () {
-        // Navigator.push(
-        //     context, MaterialPageRoute(builder: (context) => HomePage()));
+        return null;
       },
       child: Container(
-        width: MediaQuery.of(context).size.width * 0.8,
+        width: MediaQuery
+            .of(context)
+            .size
+            .width * 0.8,
         padding: EdgeInsets.symmetric(vertical: 15),
         alignment: Alignment.center,
         decoration: BoxDecoration(
@@ -112,12 +119,14 @@ class _LoginPageState extends State<LoginPage> {
   Widget _facebookButton() {
     return InkWell(
       onTap: () {
-        // Navigator.push(
-        //     context, MaterialPageRoute(builder: (context) => HomePage()));
+        return null;
       },
       child: Container(
         // color: HexColor('#4267B2'),
-        width: MediaQuery.of(context).size.width * 0.8,
+        width: MediaQuery
+            .of(context)
+            .size
+            .width * 0.8,
         padding: EdgeInsets.symmetric(vertical: 15),
         alignment: Alignment.center,
         decoration: BoxDecoration(
@@ -139,7 +148,9 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
+    Size size = MediaQuery
+        .of(context)
+        .size;
     SystemChrome.setEnabledSystemUIOverlays([]);
     return MaterialApp(
       debugShowCheckedModeBanner: false,
@@ -148,8 +159,14 @@ class _LoginPageState extends State<LoginPage> {
         body: SafeArea(
           child: Container(
             margin: EdgeInsets.only(top: 70),
-            width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height,
+            width: MediaQuery
+                .of(context)
+                .size
+                .width,
+            height: MediaQuery
+                .of(context)
+                .size
+                .height,
             child: SingleChildScrollView(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -183,9 +200,10 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
+
   void getPhoneNumber(String phoneNumber) async {
     PhoneNumber number =
-        await PhoneNumber.getRegionInfoFromPhoneNumber(phoneNumber, 'PK');
+    await PhoneNumber.getRegionInfoFromPhoneNumber(phoneNumber, 'PK');
 
     setState(() {
       this.number = number;
@@ -197,4 +215,4 @@ class _LoginPageState extends State<LoginPage> {
     controller?.dispose();
     super.dispose();
   }
-}
+ }

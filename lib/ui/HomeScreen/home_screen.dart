@@ -6,6 +6,9 @@ import 'package:ride_booking/ui/DrawerScreens/profile.dart';
 import 'package:ride_booking/ui/DrawerScreens/my_address.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:ride_booking/ui/Menu/menu.dart';
+import 'package:ride_booking/ui/Calendar/calender.dart';
+import 'package:ride_booking/ui/BottomNavigationScreens/Dashboard/dashboard_main.dart';
 import 'package:ride_booking/ui/BottomNavigationScreens/AddScreen.dart';
 import 'package:ride_booking/ui/BottomNavigationScreens/ProfileScreen.dart';
 import 'package:ride_booking/ui/BottomNavigationScreens/FeedScreen.dart';
@@ -18,10 +21,15 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  int pageIndex = 2;
+  int pageIndex = 2 ;
 
   //  Calling all pages
-  final FeedScreen _feedScreen = FeedScreen();
+  final MyVehicle _myVehicle = MyVehicle();
+  final MenuScreen _menuScreen = MenuScreen();
+  final HomeCalendarPage _homeCalendarPage = HomeCalendarPage();
+  final Dashboard _dashboard = Dashboard();
+  // final FeedScreen _feedScreen = FeedScreen();
+  final MyAddress _myAddress = MyAddress();
   final ProfileScreen _profileScreen = ProfileScreen();
   final AddScreen _addScreen = AddScreen();
   final NotificationScreen _notificationScreen = NotificationScreen();
@@ -32,19 +40,19 @@ class _HomePageState extends State<HomePage> {
   Widget _pageChooser(int page) {
     switch (page) {
       case 0:
-        return _feedScreen;
+        return _myVehicle;
         break;
       case 1:
-        return _searchScreen;
+        return _myAddress;
         break;
       case 2:
-        return _addScreen;
+        return _dashboard;
         break;
       case 3:
-        return _notificationScreen;
+        return _homeCalendarPage;
         break;
       case 4:
-        return _profileScreen;
+        return _menuScreen;
         break;
       default:
         return new Container(
@@ -97,11 +105,11 @@ class _HomePageState extends State<HomePage> {
           index: pageIndex,
           height: 50.0,
           items: <Widget>[
-            Icon(Icons.home_sharp, size: 30, color: Colors.white),
-            Icon(Icons.location_on_sharp, size: 30, color: Colors.white),
-            Icon(Icons.add, size: 30, color: Colors.white),
-            Icon(Icons.favorite_border, size: 30, color: Colors.white),
-            Icon(Icons.perm_identity, size: 30, color: Colors.white),
+            Icon(Icons.home_sharp, size: 25, color: Colors.white),
+            Icon(Icons.location_on_sharp, size: 25, color: Colors.white),
+            Icon(Icons.local_fire_department_sharp, size: 25, color: Colors.white),
+            Icon(Icons.calendar_today_sharp, size: 25, color: Colors.white),
+            Icon(Icons.view_headline_sharp, size: 25, color: Colors.white),
           ],
           color: Colors.orange,
           buttonBackgroundColor: Colors.orange,
@@ -198,7 +206,7 @@ class _HomePageState extends State<HomePage> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => MyBike()),
+                                  builder: (context) => MyVehicle()),
                             );
                           }),
                       InkWell(
@@ -217,7 +225,7 @@ class _HomePageState extends State<HomePage> {
                           onTap: () {
                             Navigator.push(
                               context,
-                              MaterialPageRoute(builder: (context) => Maps()),
+                              MaterialPageRoute(builder: (context) => MyAddress()),
                             );
                           }),
                       InkWell(

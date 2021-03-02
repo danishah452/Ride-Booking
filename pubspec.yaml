@@ -12,6 +12,8 @@ dependencies:
     sdk: flutter
   google_fonts: 1.1.2
   http: 0.12.2
+  intl: 0.16.1
+  rxdart: 0.25.0
   hexcolor: 1.0.6
   pinput: 1.0.0
   geolocator: 6.2.1
@@ -24,14 +26,22 @@ dependencies:
   google_sign_in: 4.5.9
   google_maps_flutter: 1.2.0
   cupertino_icons: ^1.0.0
+  firebase_messaging: ^7.0.3
   device_preview: 0.5.5
-
+  flutter_icons: 1.1.0
+  firebase: 8.0.0
+  firebase_auth:
+  firebase_core:
+  flutter_calendar_carousel: 1.5.3
+  table_calendar: ^2.3.3
+  material_design_icons_flutter: 4.0.5855
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
 flutter:
+  uses-material-design: true
   assets:
     - assets/
-  uses-material-design: true
+    - assets/icons/

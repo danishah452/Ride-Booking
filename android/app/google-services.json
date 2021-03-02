@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "346586577214",
+    "project_id": "riding-app-809f3",
+    "storage_bucket": "riding-app-809f3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:346586577214:android:11d5f0e64513ee0498946f",
+        "android_client_info": {
+          "package_name": "com.example.ride_booking"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "346586577214-opt5vjsjaqi8qfecc4c5ccbgli2laoua.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD-96ENvVDQKeFyo8KYNgO3eJANbPKr0VQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "346586577214-opt5vjsjaqi8qfecc4c5ccbgli2laoua.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

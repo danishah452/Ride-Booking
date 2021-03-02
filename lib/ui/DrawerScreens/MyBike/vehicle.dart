@@ -5,14 +5,14 @@ import 'package:ride_booking/ui/DrawerScreens/MyBike/add_car.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'add_bike.dart';
 
-void run() => runApp(MyBike());
+void run() => runApp(MyVehicle());
 
-class MyBike extends StatefulWidget {
+class MyVehicle extends StatefulWidget {
   @override
-  _MyBikeState createState() => _MyBikeState();
+  _MyVehicleState createState() => _MyVehicleState();
 }
 
-class _MyBikeState extends State<MyBike> {
+class _MyVehicleState extends State<MyVehicle> {
   Widget _backButton() {
     return InkWell(
       onTap: () {
@@ -37,8 +37,7 @@ class _MyBikeState extends State<MyBike> {
                 'Add New Vehicle',
                 style: GoogleFonts.alegreya(
                     fontSize: 20,
-                    color: Colors.black,
-                    fontWeight: FontWeight.w800),
+                    color: Colors.black),
               ),
             )
           ],
